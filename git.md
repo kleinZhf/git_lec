@@ -118,6 +118,8 @@ git clone <url>
 的方式可以将远程库克隆到本地。
 
 # git的分支管理
+
+## 创建与合并分支
 git将每次提交串成一条时间线，每条时间线被称为一个分支，默认情况下有一条主分支master。多人协作时，为了
 不妨碍他人的工作，可以创建新的分支进行修改，在修改完成后再和master分支合并。
 
@@ -127,7 +129,22 @@ git branch dev
 git checkout dev
 ```
 可以创建一条新的名为`dev`的分支并指向它。也可以使用`git checkout -b dev`一步完成这个操作。
-通过`git branch`可以查看所有的分支，当前分支前会有一个`*`号。
+通过`git branch`可以查看所有的分支，当前分支前会有一个`*`号。现在我们所有的提交都会在`dev`分支上进行，
+当我们完成所有修改并提交后，使用
+```
+git checkout master
+```
+切换回`master`分支，再查看修改的文件会发现所有在`dev`上的修改都看不到了，通过
+```
+git merge dev
+```
+可以将`dev`与`master`合并。然后可以通过
+```
+git branch -d dev
+```
+删除`dev`分支，再用`git branch`查看就只有`master`分支了。
+
+## 解决冲突
 
 
 
