@@ -1,3 +1,2 @@
 test
-<<<<<<< HEAD
 add master and feat
