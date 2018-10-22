@@ -145,9 +145,74 @@ git branch -d dev
 删除`dev`分支，再用`git branch`查看就只有`master`分支了。
 
 ## 解决冲突
+如果我们在新分支提交后切换回`master`又做了新的提交，这时合并二者会出现冲突，需要我们手动解决冲突
+后进行合并。`git status`会告诉我们存在冲突的文件，打开对应文件会发现git使用`<<<<<<<`,`=======`
+`>>>>>>>`标注出了不同分支的内容，将文件修改成我们需要的内容后再进行`add`和`commit`即可解决冲突。
+通过`git log --graph`可以看到分支合并的情况。
 
+## 多人协作
+当我们从远程仓库克隆时，git自动把本地的`master`分支和远程的`master`分支对应，远程仓库默认名称
+为`origin`，通过
+```
+git remove -v
+```
+可以查看远程分支的详细信息。
 
+通过
+```
+git push origin master
+git push origin dev
+```
+等可以向远程仓库推送对应的分支。多人协作时，远程分支可能在你推送时已经更新过，这时会出现推送失败的提示，
+使用
+```
+git pull
+```
+将远程的分支抓取到本地试图合并，若有冲突还需手动解除冲突，在本地完成合并和提交后再次`push`即可。
 
+`git pull`可能会提示`no tracking information`的错误，需要使用
+```
+git branch --set-upstream-to <branch-name> origin/<branch-name>
+```
+将本地的分支与远程的分支链接。
 
-## git使用
-### git特性
+更多git的使用细节可以从[https://book.git-scm.com/](https://book.git-scm.com/)获取更为详细的git使用手册，
+[廖雪峰的Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+也是相当简明易懂的git教学网站(本文档git部分参考了此网站内容)。
+
+# Doxygen
+## 安装
+Doxygen 的官方[下载页面](http://www.stack.nl/~dimitri/doxygen/download.html)
+提供了多种安装方案
+
+可以通过clone他们的git repo得到他们最新的测试版本
+```
+git clone https://github.com/doxygen/doxygen.git
+cd doxygen
+
+mkdir build
+cd build
+cmake -G "Unix Makefiles" ..
+make
+make install
+```
+
+也可以下载最新的发行版本，他们提供了源码版，二进制版，Windows版和Mac OS的dmg安装文件
+以源码版为例，我们下载`doxygen-1.8.14.src.tar.gz`文件解压
+```
+tar -czvf $PATHOF(doxygen-1.8.14.src.tar.gz)
+cd doxygen-1.8.14
+mkdir build
+cd build
+cmake -G "Unix Makefiles" ..
+make
+make install
+```
+我们还可以从安装文件生成Doxygen的使用说明文档，回到`build`目录
+```
+cmake -Dbuild_doc=YES ..
+make docs
+```
+我们可以得到`html`和`latex`两种格式的说明文档，到`html`目录下，打开任意一个`html`
+文件即可在浏览器中以html的形式浏览`Doxygen`的使用说明文档；在`latex`目录下进行编译
+即可得到其`pdf`格式的说明文档。
