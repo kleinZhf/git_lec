@@ -44,6 +44,12 @@ git add <filename>
 git commit -m "comment"
 ```
 可以将暂存区的文件提交到版本库，**comment**部分用来解释本次提交的代码改动说明，方便日后查看。
+```
+git diff
+```
+可以告诉我们上次提交之后版本库进行了何种修改。
+
+# 版本穿梭
 
 ## git使用
 ### git特性
