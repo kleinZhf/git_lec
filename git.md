@@ -96,7 +96,41 @@ git的最突出特点之一就是远程仓库，可以将一台电脑的git仓�
 ssh-keygen -t -rsa -C <email>
 ```
 - 在主目录下找到`.ssh`目录，找到**id_rsa.pub**文件
-- 登陆GitHub，在**Account settings->SSH Keys**页面添加**id_rsa.pub**的内容
+- 登陆GitHub，在**settings->SSH Keys**页面添加**id_rsa.pub**的内容
+
+## 添加远程库
+在GitHub上创建一个新的仓库，创建页面会提示使用
+```
+git remote add origin git@github.com:username/repo.git
+```
+在本地链接远程库，通过
+```
+git push -u origin master
+```
+将本地的master分枝推送到远程，第一次使用是会有验证GitHub服务器的SSH Key的警告，输入yes来将GitHub服务器
+的SSH Key添加到本地的信任列表里。
+
+## 从远程库克隆
+通过
+```
+git clone <url>
+```
+的方式可以将远程库克隆到本地。
+
+# git的分支管理
+git将每次提交串成一条时间线，每条时间线被称为一个分支，默认情况下有一条主分支master。多人协作时，为了
+不妨碍他人的工作，可以创建新的分支进行修改，在修改完成后再和master分支合并。
+
+通过
+```
+git branch dev
+git checkout dev
+```
+可以创建一条新的名为`dev`的分支并指向它。也可以使用`git checkout -b dev`一步完成这个操作。
+通过`git branch`可以查看所有的分支，当前分支前会有一个`*`号。
+
+
+
 
 ## git使用
 ### git特性
