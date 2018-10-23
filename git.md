@@ -1,7 +1,7 @@
 # git简介
 ## git安装
 查看是否安装git
-`which git`
+`which git`，
 使用`apt-get`，`yum`，`pacman`等方式安装git，Mac可以使用homebrew进行安装
 
 首先进行用户设置
@@ -280,12 +280,22 @@ C风格的代码说明语句可以有如下几种形式
 ///////////////////////////////
 ```
 
-为变量和函数参数说明可以使用如下形式
+doxygen对代码的说明通过注释模块来实现，对于C风格的代码，其基本格式如下
 ```
-int var; /*!< ...text... */
+/*! \class Text
+    \brief A test class.
+
+	A more detailed description
+*/
 ```
-```
-void foo(int v /**< ...text... */);
-```
+其中`\class`用于类的注释，还有许多其他类型注释如下
+- `\struct`用于C结构体注释
+- `\fn`用于函数的注释
+- `\var`用于变量的注释
+- `\def`用于宏的注释
+- `\typedef`用于定义的注释
+- `\file`用于文件的注释
+- `\namespace`用于命名空间的注释
+
 
 更为详细和进阶的doxygen使用方法可以查看我们在安装时生成的说明文档。
