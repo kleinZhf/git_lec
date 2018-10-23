@@ -103,6 +103,10 @@ ssh-keygen -t -rsa -C <email>
 ```
 git remote add origin git@github.com:username/repo.git
 ```
+或者
+```
+git remote add https://github.com/username/repo.git
+```
 在本地链接远程库，通过
 ```
 git push -u origin master
